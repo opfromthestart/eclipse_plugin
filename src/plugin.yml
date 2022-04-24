@@ -1,14 +1,17 @@
 name: EclipsePlugin
-version: 0.1
+version: 0.2
 authors: [opfromthestart]
 main: com.gmail.opfromthestart.Main
-api-version: 1.17
+api-version: 1.18
 commands:
   dupe:
     description: Dupe settings
-    usage: /dupe [active|itemlimit]
-    permission: eclipseplugin.dupe
+    usage: /dupe [active | itemlimit | timeout] [number | bool]
+    permission: eclipseplugin.dupe.command
 permissions:
   eclipseplugin:
     dupe:
-      default: op
+      command:
+        default: op
+      use:
+        default: true

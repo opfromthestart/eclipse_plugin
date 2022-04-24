@@ -27,6 +27,8 @@ public class DupeCommand implements CommandExecutor {
                     return false;
                 }
                 plugin.getConfig().set("eclipseplugin.dupe.itemlimit", val);
+                sender.sendMessage("Item limit set to " + val);
+                plugin.saveConfig();
                 return true;
             }
             else if (Objects.equals(args[0], "active"))
@@ -35,11 +37,45 @@ public class DupeCommand implements CommandExecutor {
                 val = Boolean.parseBoolean(args[1]);
 
                 plugin.getConfig().set("eclipseplugin.dupe.active", val);
+                sender.sendMessage(val ? "Dupe is active" : "Dupe is disabled");
+                plugin.saveConfig();
+                return true;
+            }
+            else if (Objects.equals(args[0], "timeout"))
+            {
+                float val;
+                val = Float.parseFloat(args[1]);
+
+                plugin.getConfig().set("eclipseplugin.dupe.timeout", (int)(val*1000));
+                sender.sendMessage("Timeout set to " + (int)(val*1000) + "ms.");
+                plugin.saveConfig();
                 return true;
             }
             else
             {
-                sender.sendMessage("Invalid setting, options are itemlimit and active");
+                sender.sendMessage("Invalid setting, options are itemlimit, active, and timeout");
+                return false;
+            }
+        }
+        else if (args.length==1)
+        {
+            if (Objects.equals(args[0], "itemlimit")) {
+                sender.sendMessage(Objects.requireNonNull(plugin.getConfig().get("eclipseplugin.dupe.itemlimit")).toString());
+                return true;
+            }
+            else if (Objects.equals(args[0], "active"))
+            {
+                sender.sendMessage(Objects.requireNonNull(plugin.getConfig().get("eclipseplugin.dupe.active")).toString());
+                return true;
+            }
+            else if (Objects.equals(args[0], "timeout"))
+            {
+                sender.sendMessage(Objects.requireNonNull(plugin.getConfig().get("eclipseplugin.dupe.timeout")).toString());
+                return true;
+            }
+            else
+            {
+                sender.sendMessage("Invalid setting, options are itemlimit, active, and timeout");
                 return false;
             }
         }

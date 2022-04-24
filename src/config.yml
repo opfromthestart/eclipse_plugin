@@ -2,3 +2,4 @@ eclipseplugin:
   dupe:
     itemlimit: 50
     active: true
+    timeout: 15000

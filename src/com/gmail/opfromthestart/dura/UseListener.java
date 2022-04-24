@@ -1,7 +1,7 @@
 package com.gmail.opfromthestart.dura;
 
-import de.tr7zw.nbtapi.NBTItem;
-import org.bukkit.Material;
+import net.minecraft.nbt.NBTTagCompound;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;
@@ -13,23 +13,23 @@ public class UseListener implements Listener {
     public void onObserverUpdate(PlayerItemDamageEvent event) {
         ItemStack itm = event.getItem();
         PlayerInventory inventory = event.getPlayer().getInventory();
-        NBTItem nbtItem = new NBTItem(itm);
-        if (!nbtItem.hasKey("dmg")) {
+        net.minecraft.world.item.ItemStack itmnms = CraftItemStack.asNMSCopy(itm);
+        NBTTagCompound nbt = itmnms.s();
+        assert nbt != null;
+        int dmgval = nbt.h("dmg");
+        if (dmgval <= 0) {
             return;
         }
-        int dmg = Integer.parseInt(nbtItem.getString("dmg"));
-        if (dmg <= 0) {
-            return;
-        }
-        nbtItem.setString("dmg", String.valueOf(dmg - 1));
-        itm = nbtItem.getItem();
+        nbt.a("dmg", dmgval-1);
+        ItemStack itmt = CraftItemStack.asBukkitCopy(itmnms);
         switch (itm.getType().getEquipmentSlot()) {
-            case HEAD -> inventory.setHelmet(itm);
-            case CHEST -> inventory.setChestplate(itm);
-            case LEGS -> inventory.setLeggings(itm);
-            case FEET -> inventory.setBoots(itm);
-            case OFF_HAND -> inventory.setItemInOffHand(itm);
-            case HAND -> {
+            case HEAD -> inventory.setHelmet(itmt);
+            case CHEST -> inventory.setChestplate(itmt);
+            case LEGS -> inventory.setLeggings(itmt);
+            case FEET -> inventory.setBoots(itmt);
+            case OFF_HAND -> inventory.setItemInOffHand(itmt);
+            case HAND -> inventory.setItemInMainHand(itmt);
+                /*
                 if (inventory.getItemInOffHand().getType() != Material.AIR) {
                     NBTItem nbtItemOffHand = new NBTItem(inventory.getItemInOffHand());
                     if (inventory.getItemInOffHand().getType() == itm.getType() && inventory.getItemInOffHand().getEnchantments().toString().equals(itm.getEnchantments().toString()) && nbtItemOffHand.hasKey("dmg")) {
@@ -42,7 +42,7 @@ public class UseListener implements Listener {
                         inventory.setItemInMainHand(itm);
                     }
                 }
-            }
+            }*/
         }
         event.setCancelled(true);
     }
