@@ -3,3 +3,9 @@ eclipseplugin:
     itemlimit: 50
     active: true
     timeout: 15000
+  roof:
+    speed: 15
+    lowtps: 16
+    lowspeed: 10
+    offtps: 10
+    killifabove: false

@@ -8,6 +8,10 @@ commands:
     description: Dupe settings
     usage: /dupe [active | itemlimit | timeout] [number | bool]
     permission: eclipseplugin.dupe.command
+  roof:
+    description: Nether roof settings
+    usage: /roof [offtps | slowtps | slowspeed | maxspeed | killifabove] [speed]
+    permission: eclipseplugin.roof.command
 permissions:
   eclipseplugin:
     dupe:
@@ -15,3 +19,6 @@ permissions:
         default: op
       use:
         default: true
+    roof:
+      command:
+        default: op

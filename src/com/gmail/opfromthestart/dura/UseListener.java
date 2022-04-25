@@ -8,6 +8,8 @@ import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+//Written based on Xymb's dura
+
 public class UseListener implements Listener {
     @EventHandler
     public void onObserverUpdate(PlayerItemDamageEvent event) {
@@ -46,5 +48,4 @@ public class UseListener implements Listener {
         }
         event.setCancelled(true);
     }
-
 }

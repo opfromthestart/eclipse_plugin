@@ -1,10 +1,7 @@
 package com.gmail.opfromthestart.dupe;
 
-import net.minecraft.network.chat.ChatMessageType;
-import net.minecraft.network.chat.IChatBaseComponent;
-import net.minecraft.network.protocol.game.PacketPlayOutChat;
+import com.gmail.opfromthestart.Messages;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+//written based on 254nm's dupe plugin
 
 public class InteractListener implements Listener {
 
@@ -45,7 +44,7 @@ public class InteractListener implements Listener {
 						}
 						if (lastDupe.get(event.getPlayer().getName()) > System.currentTimeMillis() - plugin.getConfig().getInt("eclipseplugin.dupe.timeout")) {
 							long timeleft = (-System.currentTimeMillis() + plugin.getConfig().getInt("eclipseplugin.dupe.timeout") + lastDupe.get(event.getPlayer().getName())) / 1000;
-							sendMessage(event.getPlayer(), "§7You can't dupe for another §6" + timeleft + " §7seconds.");
+							Messages.sendActionBar(event.getPlayer(), "§7You can't dupe for another §6" + timeleft + " §7seconds.");
 							return;
 						}
 						for (ItemStack item : entity.getInventory().getContents()) {
@@ -58,17 +57,11 @@ public class InteractListener implements Listener {
 						//sendMessage(event.getPlayer(), "&cChests on llamas, donkeys, mules, Etc is currently disabled, this is to facilitate the SalC1 TreeMC dupe");
 						lastDupe.put(event.getPlayer().getName(), System.currentTimeMillis());
 					} else {
-						sendMessage(event.getPlayer(), "&6You do not have permission to dupe");
+						Messages.sendActionBar(event.getPlayer(), "&6You do not have permission to dupe");
 					}
 				}
 			}
 		}
-	}
-
-	private void sendMessage(Player player, String message) {
-		IChatBaseComponent msg = IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + message + "\"}");
-		PacketPlayOutChat bar = new PacketPlayOutChat(msg, ChatMessageType.c, player.getUniqueId());
-		(((CraftPlayer)player).getHandle()).b.a(bar);
 	}
 
 	private void purgeItems(Player player, int limit)
