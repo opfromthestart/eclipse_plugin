@@ -1,0 +1,103 @@
+anarchyexploitfixes:
+"prevents packet exploits"
+open source, low priority
+
+anarchystats:
+shows user server creation date, world size, and number of unique players
+open source, low priority
+
+boostedhelp:
+custom command help text, including colors
+not open source, med priority
+
+cleanmotd:
+allows better control over motd messages
+open source, low priority
+
+deathmessagesprime:
+allows custom death messages
+uses bugeecord, not craftbukkit
+open source, med priority
+
+dmpendercrystal:
+implements custom end crystal deaths
+dependent on deathmessagesprime
+open source, med priority
+
+eclipe_plugin:
+me :)
+open source, high priority
+
+exploitfixer:
+checks packets to prevent exploits?
+open source, low priority(unless)
+
+exploitsx-1.5:
+no clue
+not open source, med priority
+
+farmlimiter:
+limits groups of entities
+paid and proprietary :(
+paid closed source, med priority
+
+hamsterapi:
+allows modification and cancellation of packets w/o nms
+open source, library
+
+killme:
+adds suicide command I think
+no source, med priority
+
+luckperms:
+allows more dynamic permission control
+open source, low priority
+
+namecolor:
+allows changing of name to different colors
+doesnt allow partial modification
+open source, med priority
+
+nocheatplus:
+anticheat
+open source, low priority
+
+packetlimiter:
+limits number of packets the server will accept
+open source, low priority
+
+pistonchat:
+green text plugin, messaging
+open source, low priority
+
+placeholderapi:
+allows display of other plugins
+open shource, low priority
+
+protocollib:
+allows direct access to minecraft protocol
+open source, library
+
+restartplugin:
+restarts?
+open source alternatives, med priority
+
+rooflimiter:
+limits nether roof movement
+open source(elytraroofpatch), high priority
+
+stress:
+allows stress testing of bukkit servers
+open source, low priority
+
+supervanish:
+allows vanish
+open source, low priority
+
+TAB:
+better tab menu display
+open source, low priority
+
+tabcompletefilter:
+filters commands that users do not have access to
+open source, low priority
