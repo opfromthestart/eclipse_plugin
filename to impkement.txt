@@ -32,9 +32,9 @@ exploitfixer:
 checks packets to prevent exploits?
 open source, low priority(unless)
 
-exploitsx-1.5:
-no clue
-not open source, med priority
+exploitsx:
+fixes spam and lag
+open source, not being updated, med priority
 
 farmlimiter:
 limits groups of entities
