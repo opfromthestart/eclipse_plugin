@@ -1,103 +1,130 @@
 anarchyexploitfixes:
 "prevents packet exploits"
+17 days ago
 open source, low priority
 
 anarchystats:
 shows user server creation date, world size, and number of unique players
+7 days ago
 open source, low priority
 
 boostedhelp:
 custom command help text, including colors
+2019
 not open source, med priority
 
 cleanmotd:
 allows better control over motd messages
+2lstudios - 8 months ago
 open source, low priority
 
 deathmessagesprime:
 allows custom death messages
 uses bugeecord, not craftbukkit
+2020, not under development
 open source, med priority
 
 dmpendercrystal:
 implements custom end crystal deaths
 dependent on deathmessagesprime
+2020, not under development
 open source, med priority
 
 eclipe_plugin:
 me :)
+a couple days ago idr
 open source, high priority
 
 exploitfixer:
 checks packets to prevent exploits?
+2lstudios - 2 days ago
 open source, low priority(unless)
 
 exploitsx:
 fixes spam and lag
-open source, not being updated, med priority
+1 year ago, not being updated
+open source, med priority
 
 farmlimiter:
 limits groups of entities
 paid and proprietary :(
+1 month ago
 paid closed source, med priority
 
 hamsterapi:
 allows modification and cancellation of packets w/o nms
+required bungeecord, phase out.
+12 days ago
 open source, library
 
 killme:
 adds suicide command I think
+no clue
 no source, med priority
 
 luckperms:
 allows more dynamic permission control
+2 days ago
 open source, low priority
 
 namecolor:
 allows changing of name to different colors
 doesnt allow partial modification
+about 1 year, its original is about a week ago
 open source, med priority
 
 nocheatplus:
 anticheat
+today
 open source, low priority
 
 packetlimiter:
 limits number of packets the server will accept
+2020
 open source, low priority
 
 pistonchat:
 green text plugin, messaging
+yesterday
 open source, low priority
 
 placeholderapi:
 allows display of other plugins
-open shource, low priority
+18 days ago
+open shource, library
 
 protocollib:
 allows direct access to minecraft protocol
+2 months ago
 open source, library
 
 restartplugin:
 restarts?
+no clue
 open source alternatives, med priority
 
 rooflimiter:
 limits nether roof movement
+doesnt matter, im replacing it
 open source(elytraroofpatch), high priority
 
 stress:
 allows stress testing of bukkit servers
+2020
 open source, low priority
 
 supervanish:
 allows vanish
+1 month ago
 open source, low priority
 
 TAB:
 better tab menu display
+2 weeks ago
+some paid shenannigans
 open source, low priority
 
 tabcompletefilter:
 filters commands that users do not have access to
+10 months ago
 open source, low priority
