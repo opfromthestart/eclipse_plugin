@@ -1,6 +1,6 @@
 package com.gmail.opfromthestart;
 
-import com.gmail.opfromthestart.culling.SpeedUnloader;
+import com.comphenix.protocol.ProtocolLibrary;
 import com.gmail.opfromthestart.dupe.DupeCommand;
 import com.gmail.opfromthestart.dupe.InteractListener;
 import com.gmail.opfromthestart.dura.UseListener;
@@ -13,6 +13,8 @@ import java.util.Objects;
 public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
+        Messages.setProtocolManager(ProtocolLibrary.getProtocolManager());
+
         TPS tps = new TPS();
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, tps::onTick, 0, 1);
 

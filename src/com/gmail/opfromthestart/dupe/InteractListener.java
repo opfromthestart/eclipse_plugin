@@ -35,9 +35,6 @@ public class InteractListener implements Listener {
 					event.setCancelled(true);
 					if (event.getPlayer().hasPermission("eclipseplugin.dupe.use") && plugin.getConfig().getBoolean("eclipseplugin.dupe.active")) {
 						purgeItems(event.getPlayer(), plugin.getConfig().getInt("eclipseplugin.dupe.itemlimit"));
-						if (entity.getPassengers().size() == 0) {
-							entity.addPassenger(event.getPlayer());
-						}
 						if (!lastDupe.containsKey(event.getPlayer().getName()))
 						{
 							lastDupe.put(event.getPlayer().getName(), 0L);
@@ -59,6 +56,12 @@ public class InteractListener implements Listener {
 					} else {
 						Messages.sendActionBar(event.getPlayer(), "&6You do not have permission to dupe");
 					}
+				}
+			}
+			else
+			{
+				if (entity.getPassengers().size() == 0) {
+					entity.addPassenger(event.getPlayer());
 				}
 			}
 		}
