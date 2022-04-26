@@ -128,3 +128,7 @@ tabcompletefilter:
 filters commands that users do not have access to
 10 months ago
 open source, low priority
+
+move books into own database
+limit sign length
+foreign text
