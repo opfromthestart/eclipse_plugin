@@ -3,6 +3,7 @@ version: 0.2
 authors: [opfromthestart]
 main: com.gmail.opfromthestart.Main
 api-version: 1.18
+depend: ["ProtocolLib"]
 commands:
   dupe:
     description: Dupe settings
@@ -10,7 +11,7 @@ commands:
     permission: eclipseplugin.dupe.command
   roof:
     description: Nether roof settings
-    usage: /roof [offtps | slowtps | slowspeed | maxspeed | killifabove] [speed]
+    usage: /roof [offtps | lowtps | slowspeed | maxspeed | killifabove] [speed]
     permission: eclipseplugin.roof.command
 permissions:
   eclipseplugin:

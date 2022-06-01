@@ -9,3 +9,5 @@ eclipseplugin:
     lowspeed: 10
     offtps: 10
     killifabove: false
+  culling:
+    time:-1

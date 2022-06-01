@@ -16,12 +16,12 @@ import java.util.Objects;
 
 //written based on 254nm's dupe plugin
 
-public class InteractListener implements Listener {
+public class DupeInteractListener implements Listener {
 
 	Map<String, Long> lastDupe = new HashMap<>();
 	JavaPlugin plugin;
 
-	public InteractListener(JavaPlugin plug)
+	public DupeInteractListener(JavaPlugin plug)
 	{
 		plugin = plug;
 	}

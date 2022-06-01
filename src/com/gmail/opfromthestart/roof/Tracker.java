@@ -2,7 +2,7 @@ package com.gmail.opfromthestart.roof;
 
 import com.gmail.opfromthestart.Messages;
 import com.gmail.opfromthestart.TPS;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Tuple;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,14 +15,22 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Tracker implements Listener {
-    public HashMap<String, Location> pastLocs;
+    public HashMap<String, Tuple<Long, Location>> pastLocs;
     public JavaPlugin plugin;
     public TPS tps;
+    public static final int skipTime = 1000;
+    public static final float tolerance = 1.3f;
 
     public Tracker(JavaPlugin plug, TPS tp)
     {
         plugin = plug;
         tps = tp;
+        pastLocs = new HashMap<>();
+    }
+
+    public static double xzDist(Location a, Location b)
+    {
+        return Math.sqrt(Math.pow(a.getX()-b.getX(),2)+Math.pow(a.getZ()-b.getZ(),2));
     }
 
     @EventHandler
@@ -31,25 +39,45 @@ public class Tracker implements Listener {
         Player player = pme.getPlayer();
         if (Objects.requireNonNull(player.getLocation().getWorld()).hasCeiling()) { //128
             if (player.getLocation().getY()>127) {
-
-                double speed = player.getVelocity().length();
+                Messages.sendMe(player.getName());
+                if (!pastLocs.containsKey(player.getName()))
+                {
+                    pastLocs.put(player.getName(), new Tuple<>(System.currentTimeMillis(), player.getLocation()));
+                    return;
+                }
+                Tuple<Long, Location> pastLoc = pastLocs.get(player.getName());
+                if (System.currentTimeMillis() - pastLoc.a() < skipTime)
+                {
+                    return;
+                }
+                double speed = 1000*(Tracker.xzDist(pastLoc.b(), player.getLocation()))/(System.currentTimeMillis()-pastLoc.a());
                 if (tps.tps < plugin.getConfig().getInt("eclipseplugin.roof.offtps")) {
-                    player.teleport(new Location(player.getWorld(), player.getLocation().getX(), 121, player.getLocation().getZ()));
+                    if (plugin.getConfig().getBoolean("eclipseplugin.roof.killifabove"))
+                        player.damage(1024);
+                    else
+                        player.teleport(new Location(player.getWorld(), player.getLocation().getX(), 121, player.getLocation().getZ()));
                     Messages.sendActionBar(player, "§7Nether roof is disabled under §6"
                             + plugin.getConfig().getDouble("eclipseplugin.roof.offtps") + "§7 TPS");
                 } else if (tps.tps < plugin.getConfig().getInt("eclipseplugin.roof.lowtps")) {
                     if (speed > plugin.getConfig().getInt("eclipseplugin.roof.lowspeed")) {
-                        player.setVelocity(player.getVelocity().normalize().multiply(plugin.getConfig().getDouble("eclipseplugin.roof.lowspeed")));
                         Messages.sendActionBar(player, "§7Max speed under §6" + plugin.getConfig().getDouble("eclipseplugin.roof.lowtps") +
                                 " §7TPS is §6" + plugin.getConfig().getInt("eclipseplugin.roof.lowspeed") + "§7BPS");
-                        player.teleport(pme.getFrom());
+                        Vector direction = player.getVelocity();
+                        direction.setY(0);
+                        direction = direction.normalize().multiply(tolerance*plugin.getConfig().getDouble("eclipseplugin.roof.lowspeed"));
+                        player.teleport(pastLoc.b().add(direction));
+                        player.setVelocity(player.getVelocity().normalize().multiply(plugin.getConfig().getDouble("eclipseplugin.roof.lowspeed")));
                     }
                 } else if (speed > plugin.getConfig().getInt("eclipseplugin.roof.speed")) {
-                    player.setVelocity(player.getVelocity().normalize().multiply(plugin.getConfig().getDouble("eclipseplugin.roof.speed")));
                     Messages.sendActionBar(player, "§7Max speed is §6" + plugin.getConfig().getDouble("eclipseplugin.roof.speed")
                     + "§7BPS");
-                    player.teleport(pme.getFrom());
+                    Vector direction = player.getVelocity();
+                    direction.setY(0);
+                    direction = direction.normalize().multiply(tolerance*plugin.getConfig().getDouble("eclipseplugin.roof.speed"));
+                    player.teleport(pastLoc.b().add(direction));
+                    player.setVelocity(player.getVelocity().normalize().multiply(plugin.getConfig().getDouble("eclipseplugin.roof.speed")));
                 }
+                pastLocs.put(player.getName(), new Tuple<>(System.currentTimeMillis(), player.getLocation()));
                 Messages.sendMe(speed);
             }
         }

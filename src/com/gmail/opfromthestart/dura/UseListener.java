@@ -18,19 +18,24 @@ public class UseListener implements Listener {
         net.minecraft.world.item.ItemStack itmnms = CraftItemStack.asNMSCopy(itm);
         NBTTagCompound nbt = itmnms.s();
         assert nbt != null;
-        int dmgval = nbt.h("dmg");
-        if (dmgval <= 0) {
+        if (!nbt.e("dmg"))
+        {
             return;
         }
-        nbt.a("dmg", dmgval-1);
+        int dmgval = nbt.h("dmg")-event.getDamage();
+        if (dmgval < 0) {
+            event.setDamage(dmgval);
+            return;
+        }
+        nbt.a("dmg", dmgval);
         ItemStack itmt = CraftItemStack.asBukkitCopy(itmnms);
         switch (itm.getType().getEquipmentSlot()) {
             case HEAD -> inventory.setHelmet(itmt);
             case CHEST -> inventory.setChestplate(itmt);
             case LEGS -> inventory.setLeggings(itmt);
             case FEET -> inventory.setBoots(itmt);
-            case OFF_HAND -> inventory.setItemInOffHand(itmt);
             case HAND -> inventory.setItemInMainHand(itmt);
+            case OFF_HAND -> inventory.setItemInOffHand(itmt);
                 /*
                 if (inventory.getItemInOffHand().getType() != Material.AIR) {
                     NBTItem nbtItemOffHand = new NBTItem(inventory.getItemInOffHand());
