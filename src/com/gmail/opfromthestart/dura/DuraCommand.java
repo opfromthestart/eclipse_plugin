@@ -1,18 +1,15 @@
 package com.gmail.opfromthestart.dura;
 
+import com.gmail.opfromthestart.PluginCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public class DuraCommand implements CommandExecutor {
+public class DuraCommand extends PluginCommand {
 
-    private final Plugin plugin;
-
-    public DuraCommand(JavaPlugin plug)
-    {
-        plugin = plug;
+    public DuraCommand(Plugin plug) {
+        super(plug);
     }
 
     @Override

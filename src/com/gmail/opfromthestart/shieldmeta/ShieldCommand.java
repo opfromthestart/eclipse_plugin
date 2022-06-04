@@ -1,18 +1,16 @@
 package com.gmail.opfromthestart.shieldmeta;
 
+import com.gmail.opfromthestart.PluginCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ShieldCommand implements CommandExecutor {
+public class ShieldCommand extends PluginCommand {
 
-    private final Plugin plugin;
-
-    public ShieldCommand(JavaPlugin plug)
-    {
-        plugin = plug;
+    public ShieldCommand(Plugin plug) {
+        super(plug);
     }
 
     @Override

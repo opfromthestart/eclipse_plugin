@@ -1,18 +1,19 @@
 package com.gmail.opfromthestart.roof;
 
+import com.gmail.opfromthestart.PluginCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public class RoofCommand implements CommandExecutor {
-    private final JavaPlugin plugin;
-    public RoofCommand(JavaPlugin plug)
-    {
-        plugin = plug;
+public class RoofCommand extends PluginCommand {
+
+    public RoofCommand(Plugin plug) {
+        super(plug);
     }
 
     @Override

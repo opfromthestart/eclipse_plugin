@@ -1,17 +1,18 @@
 package com.gmail.opfromthestart.dupe;
 
+import com.gmail.opfromthestart.PluginCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public class DupeCommand implements CommandExecutor {
-    private final JavaPlugin plugin;
-    public DupeCommand(JavaPlugin plug)
-    {
-        plugin = plug;
+public class DupeCommand extends PluginCommand {
+
+    public DupeCommand(Plugin plug) {
+        super(plug);
     }
 
     @Override

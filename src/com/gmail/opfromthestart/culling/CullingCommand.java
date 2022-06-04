@@ -1,16 +1,16 @@
 package com.gmail.opfromthestart.culling;
 
+import com.gmail.opfromthestart.PluginCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class CullingCommand implements CommandExecutor {
-    private final Plugin plugin;
-    public CullingCommand(JavaPlugin plug)
-    {
-        plugin = plug;
+public class CullingCommand extends PluginCommand {
+
+    public CullingCommand(Plugin plug) {
+        super(plug);
     }
 
     @Override
