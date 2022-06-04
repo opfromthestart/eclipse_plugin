@@ -1,6 +1,7 @@
 package com.gmail.opfromthestart;
 
 import com.comphenix.protocol.ProtocolLibrary;
+import com.gmail.opfromthestart.bedsave.BedDeathListener;
 import com.gmail.opfromthestart.culling.CullingCommand;
 import com.gmail.opfromthestart.culling.SpeedUnloader;
 import com.gmail.opfromthestart.dupe.DupeCommand;
@@ -17,6 +18,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
+    BedDeathListener bedDeathListener;
+
     @Override
     public void onEnable() {
         Messages.setProtocolManager(ProtocolLibrary.getProtocolManager());
@@ -29,6 +32,8 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SpeedUnloader(this), this);
         Bukkit.getPluginManager().registerEvents(new Tracker(this, tps), this);
         Bukkit.getPluginManager().registerEvents(new ShieldDamage(this), this);
+        bedDeathListener = new BedDeathListener(this);
+        Bukkit.getPluginManager().registerEvents(bedDeathListener, this);
         saveDefaultConfig();
 
         Objects.requireNonNull(getCommand("dupe")).setExecutor(new DupeCommand(this)); // TODO plugin based one here too
