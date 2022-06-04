@@ -1,5 +1,6 @@
 package com.gmail.opfromthestart.shieldmeta;
 
+import com.gmail.opfromthestart.PluginListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -10,13 +11,21 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.plugin.Plugin;
 
 import java.util.Objects;
 
-public class ShieldDamage implements Listener {
+public class ShieldDamage extends PluginListener {
+
+    public ShieldDamage(Plugin plug) {
+        super(plug);
+    }
+
     @EventHandler
     public void onDamage(EntityDamageEvent ede)
     {
+        if (!plugin.getConfig().getBoolean("eclipseplugin.shield.active"))
+            return;
         Entity playerEntity = ede.getEntity();
         if (playerEntity instanceof Player player)
         {
@@ -31,7 +40,7 @@ public class ShieldDamage implements Listener {
                     PlayerItemDamageEvent playerItemDamageEvent = new PlayerItemDamageEvent(player, shieldItem, (int) Math.ceil( ede.getDamage()));
                     Bukkit.getPluginManager().callEvent(playerItemDamageEvent);
 
-                    Damageable shield = (Damageable) shieldItem.getItemMeta();
+                    Damageable shield = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
 
                     if (!playerItemDamageEvent.isCancelled())
                     {
@@ -51,7 +60,7 @@ public class ShieldDamage implements Listener {
                     PlayerItemDamageEvent playerItemDamageEvent = new PlayerItemDamageEvent(player, shieldItem, (int) Math.ceil( ede.getDamage()));
                     Bukkit.getPluginManager().callEvent(playerItemDamageEvent);
 
-                    Damageable shield = (Damageable) shieldItem.getItemMeta();
+                    Damageable shield = (Damageable) player.getInventory().getItemInOffHand().getItemMeta();
 
                     if (!playerItemDamageEvent.isCancelled())
                     {

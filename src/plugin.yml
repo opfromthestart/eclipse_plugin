@@ -13,6 +13,18 @@ commands:
     description: Nether roof settings
     usage: /roof [offtps | lowtps | slowspeed | maxspeed | killifabove] [speed]
     permission: eclipseplugin.roof.command
+  culltime:
+    description: Chunk culling time
+    usage: /culltime or /culltime [ticks]
+    permission: eclipseplugin.cull.command
+  shield:
+    description: Shield meta toggle
+    usage: /shield or /shield [true | false]
+    permission: eclipseplugin.shield.command
+  dura:
+    description: Dura tools toggle
+    usage: /dura or /dura [true | false]
+    permission: eclipseplugin.dura.command
 permissions:
   eclipseplugin:
     dupe:
@@ -21,5 +33,14 @@ permissions:
       use:
         default: true
     roof:
+      command:
+        default: op
+    cull:
+      command:
+        default: op
+    shield:
+      command:
+        default: op
+    dura:
       command:
         default: op

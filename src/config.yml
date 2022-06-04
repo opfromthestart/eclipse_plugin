@@ -10,4 +10,8 @@ eclipseplugin:
     offtps: 10
     killifabove: false
   culling:
-    time:-1
+    time: -1
+  dura:
+    active: true
+  shield:
+    active: true

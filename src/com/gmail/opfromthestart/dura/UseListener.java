@@ -1,5 +1,7 @@
 package com.gmail.opfromthestart.dura;
 
+import com.gmail.opfromthestart.Main;
+import com.gmail.opfromthestart.PluginListener;
 import net.minecraft.nbt.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
@@ -7,14 +9,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 //Written based on Xymb's dura
 
-public class UseListener implements Listener {
+public class UseListener extends PluginListener {
+    public UseListener(Plugin plug)
+    {
+        super(plug);
+    }
+
     @EventHandler
     public void onObserverUpdate(PlayerItemDamageEvent event) {
+        if (!plugin.getConfig().getBoolean("eclipseplugin.dura.active"))
+            return;
         ItemStack itm = event.getItem();
         PlayerInventory inventory = event.getPlayer().getInventory();
+        int place = inventory.first(itm);
         net.minecraft.world.item.ItemStack itmnms = CraftItemStack.asNMSCopy(itm);
         NBTTagCompound nbt = itmnms.s();
         assert nbt != null;
@@ -23,34 +35,16 @@ public class UseListener implements Listener {
             return;
         }
         int dmgval = nbt.h("dmg")-event.getDamage();
+        //JavaPlugin.getPlugin(Main.class).getLogger().info("Remaining damage:" + dmgval);
         if (dmgval < 0) {
-            event.setDamage(dmgval);
+            event.setDamage(-dmgval);
             return;
         }
         nbt.a("dmg", dmgval);
+        itmnms.c(nbt);
         ItemStack itmt = CraftItemStack.asBukkitCopy(itmnms);
-        switch (itm.getType().getEquipmentSlot()) {
-            case HEAD -> inventory.setHelmet(itmt);
-            case CHEST -> inventory.setChestplate(itmt);
-            case LEGS -> inventory.setLeggings(itmt);
-            case FEET -> inventory.setBoots(itmt);
-            case HAND -> inventory.setItemInMainHand(itmt);
-            case OFF_HAND -> inventory.setItemInOffHand(itmt);
-                /*
-                if (inventory.getItemInOffHand().getType() != Material.AIR) {
-                    NBTItem nbtItemOffHand = new NBTItem(inventory.getItemInOffHand());
-                    if (inventory.getItemInOffHand().getType() == itm.getType() && inventory.getItemInOffHand().getEnchantments().toString().equals(itm.getEnchantments().toString()) && nbtItemOffHand.hasKey("dmg")) {
-                        inventory.setItemInOffHand(itm);
-                    }
-                }
-                if (inventory.getItemInMainHand().getType() != Material.AIR) {
-                    NBTItem nbtItemMainHand = new NBTItem(inventory.getItemInMainHand());
-                    if (inventory.getItemInMainHand().getType() == itm.getType() && inventory.getItemInMainHand().getEnchantments().toString().equals(itm.getEnchantments().toString()) && nbtItemMainHand.hasKey("dmg")) {
-                        inventory.setItemInMainHand(itm);
-                    }
-                }
-            }*/
-        }
+        //event.getPlayer().getWorld().dropItem(event.getPlayer().getLocation(), itmt);
+        inventory.setItem(place, itmt);
         event.setCancelled(true);
     }
 }

@@ -1,6 +1,7 @@
 package com.gmail.opfromthestart.dupe;
 
 import com.gmail.opfromthestart.Messages;
+import com.gmail.opfromthestart.PluginListener;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -16,14 +17,14 @@ import java.util.Objects;
 
 //written based on 254nm's dupe plugin
 
-public class DupeInteractListener implements Listener {
+public class DupeInteractListener extends PluginListener {
 
 	Map<String, Long> lastDupe = new HashMap<>();
 	JavaPlugin plugin;
 
 	public DupeInteractListener(JavaPlugin plug)
 	{
-		plugin = plug;
+		super(plug);
 	}
 
 	@EventHandler

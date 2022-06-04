@@ -1,6 +1,7 @@
 package com.gmail.opfromthestart.roof;
 
 import com.gmail.opfromthestart.Messages;
+import com.gmail.opfromthestart.PluginListener;
 import com.gmail.opfromthestart.TPS;
 import net.minecraft.util.Tuple;
 import org.bukkit.Location;
@@ -14,15 +15,15 @@ import org.bukkit.util.Vector;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Tracker implements Listener {
+public class Tracker extends PluginListener {
     public HashMap<String, Tuple<Long, Location>> pastLocs;
-    public JavaPlugin plugin;
     public TPS tps;
     public static final int skipTime = 1000;
     public static final float tolerance = 1.3f;
 
     public Tracker(JavaPlugin plug, TPS tp)
     {
+        super(plug);
         plugin = plug;
         tps = tp;
         pastLocs = new HashMap<>();
@@ -34,7 +35,7 @@ public class Tracker implements Listener {
     }
 
     @EventHandler
-    public void onMove(PlayerMoveEvent pme)
+    public void onMove(PlayerMoveEvent pme) // TODO make a player speed class
     {
         Player player = pme.getPlayer();
         if (Objects.requireNonNull(player.getLocation().getWorld()).hasCeiling()) { //128

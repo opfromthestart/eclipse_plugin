@@ -4,19 +4,19 @@ import org.bukkit.Chunk;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpeedUnloader extends Unloader {
-    JavaPlugin plug;
 
-    public SpeedUnloader(JavaPlugin plugin)
+    public SpeedUnloader(JavaPlugin plug)
     {
-        plug = plugin;
+        super(plug);
     }
 
     @Override
     public boolean willSave(Chunk chunk) {
-        if (plug.getConfig().getInt("eclipseplugin.culling.time")==-1)
+        if (plugin.getConfig().getInt("eclipseplugin.culling.time")==-1)
         {
             return true;
         }
-        return chunk.getInhabitedTime() > plug.getConfig().getInt("eclipseplugin.culling.time");
+        // plug.getLogger().info(plug.getConfig().getInt("eclipseplugin.culling.time") + ">" + chunk.getInhabitedTime());
+        return chunk.getInhabitedTime() > plugin.getConfig().getInt("eclipseplugin.culling.time");
     }
 }

@@ -132,3 +132,58 @@ open source, low priority
 move books into own database
 limit sign length
 foreign text
+
+Plugin dupes:
+endcrystal.me:
+Unload dupe:
+Put items in a chunk, leave the chunk, and wait 10 seconds for the chunk to unload
+enter the chunk and pick up the items
+leave the chunk again and wait for unload
+repeat last 2 steps
+If any blocks are changed in the chunk, the dupe stops
+If new items are put in the chunk, the dupe stops
+If the chunk is unloaded for too long, the dupe stops, likely stores which chunks to revert for only 20 seconds, or
+    modifies calls to clean flag.
+Donkey portal dupe:
+put items in donkey
+hurt it until 1 heart
+send it through a portal where it will take damage immediately after
+Items will dupe.
+Bed tp:
+make it so dying doesnt reset your bed
+
+sweetanarchy.net
+Item frame dupe:
+Put item in item frame and remove it
+with 5% chance a copy of the item spawns within 2 blocks of the player
+Invisible mule dupe:
+Get a mule, fill it with items, make it invisible, and then kill it.
+
+5b5t.org
+Crafting dupe:
+Drop an item
+use the crafting book to craft a button.
+the item when picked up will have a new count.
+customize max count.
+
+eliteanarchy.org
+tnt minecart dupe:
+put items in a chest
+ignite tnt minecart near a chest
+keep chest open when the minecart explodes, the items will dupe
+Does not detect if the chest is broken, maybe add a toggle for that.
+
+Xanarky.org
+Donkey death dupe:
+Put items in donkey/mule/llama
+kill donkey by cactus/suffocation
+Items will dupe
+customize what types of death work, and what entities work
+
+0b0t.org
+chunk dupe:
+put items in a chunk
+put a chest full of books in a chunk
+remove your items
+unload the chunk
+dupe
