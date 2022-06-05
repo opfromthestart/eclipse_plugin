@@ -76,11 +76,8 @@ public class RoofCommand extends PluginCommand {
                 plugin.saveConfig();
                 return true;
             }
-            else
-            {
-                sender.sendMessage("Invalid setting, options are: speed, lowspeed, lowtps, offtps, killifabove.");
-                return false;
-            }
+            sender.sendMessage("Invalid setting");
+            return false;
         }
         else if (args.length==1)
         {
@@ -108,16 +105,10 @@ public class RoofCommand extends PluginCommand {
                 sender.sendMessage(Objects.requireNonNull(plugin.getConfig().get("eclipseplugin.roof.offtps")).toString());
                 return true;
             }
-            else
-            {
-                sender.sendMessage("Invalid setting, options are: speed, lowspeed, lowtps, offtps, killifabove.");
-                return false;
-            }
-        }
-        else
-        {
-            sender.sendMessage("Invalid arguments");
+            sender.sendMessage("Invalid setting");
             return false;
         }
+        sender.sendMessage("Invalid arguments");
+        return false;
     }
 }

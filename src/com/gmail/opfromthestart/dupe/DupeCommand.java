@@ -54,7 +54,7 @@ public class DupeCommand extends PluginCommand {
             }
             else
             {
-                sender.sendMessage("Invalid setting, options are itemlimit, active, and timeout");
+                sender.sendMessage("Invalid setting");
                 return false;
             }
         }
@@ -76,7 +76,7 @@ public class DupeCommand extends PluginCommand {
             }
             else
             {
-                sender.sendMessage("Invalid setting, options are itemlimit, active, and timeout");
+                sender.sendMessage("Invalid setting");
                 return false;
             }
         }

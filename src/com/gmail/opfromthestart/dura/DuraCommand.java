@@ -26,10 +26,6 @@ public class DuraCommand extends PluginCommand {
             sender.sendMessage("Dura tools are now " + (plugin.getConfig().getBoolean("eclipseplugin.dura.active") ? "active" : "disabled"));
             return true;
         }
-        else
-        {
-            sender.sendMessage("Incorrect usage, try /dura or /dura [true | false]");
-            return false;
-        }
+        return false;
     }
 }
