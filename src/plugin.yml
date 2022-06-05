@@ -1,5 +1,5 @@
 name: EclipsePlugin
-version: 0.2
+version: 0.3
 authors: [opfromthestart]
 main: com.gmail.opfromthestart.Main
 api-version: 1.18
@@ -33,6 +33,22 @@ commands:
     description: Home settings command
     usage: /homelimit [maxhomes | tptime] [limit]
     permission: eclipseplugin.homelimit.command
+  tpa:
+    description: Sends a teleport request
+    usage: /tpa [player]
+    permission: eclipseplugin.tpa.command
+  tpy:
+    description: Accepts a teleport request
+    usage: /tpy [none|player]
+    permission: eclipseplugin.tpa.command
+  tpn:
+    description: Denies a teleport request
+    usage: /tpn [none|player]
+    permission: eclipseplugin.tpa.command
+  tpsett:
+    description: Modify tpa
+    usage: /tpsett [active|timeout] [value | none]
+    permission: eclipseplugin.tpsett.command
 permissions:
   eclipseplugin:
     dupe:
@@ -58,3 +74,9 @@ permissions:
     homelimit:
       command:
         default: true
+    tpa:
+      command:
+        default: true
+    tpsett:
+      command:
+        default: op

@@ -1,8 +1,7 @@
 package com.gmail.opfromthestart;
 
 import com.comphenix.protocol.ProtocolLibrary;
-import com.gmail.opfromthestart.altbed.HomeCommand;
-import com.gmail.opfromthestart.altbed.HomeLimitCommand;
+import com.gmail.opfromthestart.altbed.*;
 import com.gmail.opfromthestart.bedsave.BedDeathListener;
 import com.gmail.opfromthestart.culling.CullingCommand;
 import com.gmail.opfromthestart.culling.SpeedUnloader;
@@ -47,6 +46,12 @@ public class Main extends JavaPlugin {
         homeCommand.loadHomes();
         Objects.requireNonNull(getCommand("home")).setExecutor(homeCommand);
         Objects.requireNonNull(getCommand("homelimit")).setExecutor(new HomeLimitCommand(this, homeCommand));
+        TpaCommand tpaCommand = new TpaCommand(this);
+        Objects.requireNonNull(getCommand("tpa")).setExecutor(tpaCommand);
+        Objects.requireNonNull(getCommand("tpy")).setExecutor(new TpyCommand(this, tpaCommand));
+        Objects.requireNonNull(getCommand("tpn")).setExecutor(new TpnCommand(this, tpaCommand));
+        Objects.requireNonNull(getCommand("tpsett")).setExecutor(new TpSettCommand(this));
+
     }
 
     @Override
