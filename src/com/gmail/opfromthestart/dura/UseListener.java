@@ -1,16 +1,13 @@
 package com.gmail.opfromthestart.dura;
 
-import com.gmail.opfromthestart.Main;
 import com.gmail.opfromthestart.PluginListener;
 import net.minecraft.nbt.NBTTagCompound;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 
 //Written based on Xymb's dura
 
@@ -28,7 +25,7 @@ public class UseListener extends PluginListener {
         PlayerInventory inventory = event.getPlayer().getInventory();
         int place = inventory.first(itm);
         net.minecraft.world.item.ItemStack itmnms = CraftItemStack.asNMSCopy(itm);
-        NBTTagCompound nbt = itmnms.s();
+        NBTTagCompound nbt = itmnms.t();
         assert nbt != null;
         if (!nbt.e("dmg"))
         {

@@ -1,9 +1,9 @@
 package com.gmail.opfromthestart.roof;
 
+import com.comphenix.protocol.wrappers.Pair;
 import com.gmail.opfromthestart.Messages;
 import com.gmail.opfromthestart.PluginListener;
 import com.gmail.opfromthestart.TPS;
-import net.minecraft.util.Tuple;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Tracker extends PluginListener {
-    public HashMap<String, Tuple<Long, Location>> pastLocs;
+    public HashMap<String, Pair<Long, Location>> pastLocs;
     public TPS tps;
     public static final int skipTime = 1000;
     public static final float tolerance = 1.3f;
@@ -43,15 +43,15 @@ public class Tracker extends PluginListener {
                 Messages.sendMe(player.getName());
                 if (!pastLocs.containsKey(player.getName()))
                 {
-                    pastLocs.put(player.getName(), new Tuple<>(System.currentTimeMillis(), player.getLocation()));
+                    pastLocs.put(player.getName(), new Pair<>(System.currentTimeMillis(), player.getLocation()));
                     return;
                 }
-                Tuple<Long, Location> pastLoc = pastLocs.get(player.getName());
-                if (System.currentTimeMillis() - pastLoc.a() < skipTime)
+                Pair<Long, Location> pastLoc = pastLocs.get(player.getName());
+                if (System.currentTimeMillis() - pastLoc.getFirst() < skipTime)
                 {
                     return;
                 }
-                double speed = 1000*(Tracker.xzDist(pastLoc.b(), player.getLocation()))/(System.currentTimeMillis()-pastLoc.a());
+                double speed = 1000*(Tracker.xzDist(pastLoc.getSecond(), player.getLocation()))/(System.currentTimeMillis()-pastLoc.getFirst());
                 if (tps.tps < plugin.getConfig().getInt("eclipseplugin.roof.offtps")) {
                     if (plugin.getConfig().getBoolean("eclipseplugin.roof.killifabove"))
                         player.damage(1024);
@@ -66,7 +66,7 @@ public class Tracker extends PluginListener {
                         Vector direction = player.getVelocity();
                         direction.setY(0);
                         direction = direction.normalize().multiply(tolerance*plugin.getConfig().getDouble("eclipseplugin.roof.lowspeed"));
-                        player.teleport(pastLoc.b().add(direction));
+                        player.teleport(pastLoc.getSecond().add(direction));
                         player.setVelocity(player.getVelocity().normalize().multiply(plugin.getConfig().getDouble("eclipseplugin.roof.lowspeed")));
                     }
                 } else if (speed > plugin.getConfig().getInt("eclipseplugin.roof.speed")) {
@@ -75,10 +75,10 @@ public class Tracker extends PluginListener {
                     Vector direction = player.getVelocity();
                     direction.setY(0);
                     direction = direction.normalize().multiply(tolerance*plugin.getConfig().getDouble("eclipseplugin.roof.speed"));
-                    player.teleport(pastLoc.b().add(direction));
+                    player.teleport(pastLoc.getSecond().add(direction));
                     player.setVelocity(player.getVelocity().normalize().multiply(plugin.getConfig().getDouble("eclipseplugin.roof.speed")));
                 }
-                pastLocs.put(player.getName(), new Tuple<>(System.currentTimeMillis(), player.getLocation()));
+                pastLocs.put(player.getName(), new Pair<>(System.currentTimeMillis(), player.getLocation()));
                 Messages.sendMe(speed);
             }
         }

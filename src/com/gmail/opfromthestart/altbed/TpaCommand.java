@@ -1,7 +1,7 @@
 package com.gmail.opfromthestart.altbed;
 
+import com.comphenix.protocol.wrappers.Pair;
 import com.gmail.opfromthestart.PluginCommand;
-import net.minecraft.util.Tuple;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class TpaCommand extends PluginCommand {
-    public List<Tuple<UUID, UUID>> requests;
+    public List<Pair<UUID, UUID>> requests;
 
     public TpaCommand(Plugin plug) {
         super(plug);
@@ -39,7 +39,7 @@ public class TpaCommand extends PluginCommand {
                 sender.sendMessage("Player " + args[0] + " is not online.");
                 return false;
             }
-            Tuple<UUID, UUID> req = new Tuple<>(from_player.getUniqueId(), to_player.getUniqueId());
+            Pair<UUID, UUID> req = new Pair<>(from_player.getUniqueId(), to_player.getUniqueId());
             requests.add(req);
             sender.sendMessage("Tpa request sent to " + args[0] + ". Request will time out in " +
                     plugin.getConfig().getInt("eclipseplugin.tpa.timeout")/1000.0 + " seconds.");

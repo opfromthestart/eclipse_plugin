@@ -1,7 +1,7 @@
 package com.gmail.opfromthestart.altbed;
 
+import com.comphenix.protocol.wrappers.Pair;
 import com.gmail.opfromthestart.PluginCommand;
-import net.minecraft.util.Tuple;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -30,12 +30,12 @@ public class TpnCommand extends PluginCommand {
             Player player = Bukkit.getPlayer(sender.getName());
             assert player != null;
             Player toTp = null;
-            Tuple<UUID, UUID> last_req = null;
-            for (Tuple<UUID, UUID> req : tpaCommand.requests)
+            Pair<UUID, UUID> last_req = null;
+            for (Pair<UUID, UUID> req : tpaCommand.requests)
             {
-                if (req.b() == player.getUniqueId())
+                if (req.getSecond() == player.getUniqueId())
                 {
-                    toTp = Bukkit.getPlayer(req.a());
+                    toTp = Bukkit.getPlayer(req.getFirst());
                     last_req = req;
                 }
             }
@@ -54,11 +54,11 @@ public class TpnCommand extends PluginCommand {
             assert player != null;
             Player toTp = Bukkit.getPlayer(args[0]);
             assert toTp != null;
-            Tuple<UUID, UUID> last_req = null;
-            for (Tuple<UUID, UUID> req : tpaCommand.requests)
+            Pair<UUID, UUID> last_req = null;
+            for (Pair<UUID, UUID> req : tpaCommand.requests)
             {
-                if (req.b() == player.getUniqueId()) {
-                    if (req.a() == toTp.getUniqueId()) {
+                if (req.getSecond() == player.getUniqueId()) {
+                    if (req.getFirst() == toTp.getUniqueId()) {
                         last_req = req;
                     }
                 }
