@@ -13,6 +13,7 @@ import com.gmail.opfromthestart.roof.RoofCommand;
 import com.gmail.opfromthestart.roof.Tracker;
 import com.gmail.opfromthestart.shieldmeta.ShieldCommand;
 import com.gmail.opfromthestart.shieldmeta.ShieldDamage;
+import com.gmail.opfromthestart.stats.StatsCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +26,12 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         Messages.setProtocolManager(ProtocolLibrary.getProtocolManager());
+
+        long starttime = getConfig().getLong("eclipseplugin.stats.starttime");
+        if (starttime==0)
+        {
+            getConfig().set("eclipseplugin.stats.starttime", System.currentTimeMillis());
+        }
 
         TPS tps = new TPS();
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, tps::onTick, 0, 1);
@@ -51,6 +58,7 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("tpy")).setExecutor(new TpyCommand(this, tpaCommand));
         Objects.requireNonNull(getCommand("tpn")).setExecutor(new TpnCommand(this, tpaCommand));
         Objects.requireNonNull(getCommand("tpsett")).setExecutor(new TpSettCommand(this));
+        Objects.requireNonNull(getCommand("stats")).setExecutor(new StatsCommand(this));
 
     }
 

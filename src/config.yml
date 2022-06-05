@@ -21,3 +21,16 @@ eclipseplugin:
   tpa:
     active: false
     timeout: 10000
+  stats:
+    starttime: 0
+    worldfolders:
+      - "world"
+      - "world_nether"
+      - "world_the_end"
+    command:
+      - "&6--------------------------------------------"
+      - "&7World was created on &6[STARTDATE]&7. That was &6[DURATION]&7 ago."
+      - "&7The world is &6[SIZE]&7."
+      - "&7A total of &6[PLAYERS]&7 players have joined."
+      - "&7World seed: [[SEED]]"
+      - "&6--------------------------------------------"

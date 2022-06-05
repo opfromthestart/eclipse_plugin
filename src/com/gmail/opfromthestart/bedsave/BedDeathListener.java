@@ -77,6 +77,7 @@ public class BedDeathListener extends PluginListener {
                     e.printStackTrace();
                 }
                 chunk.setForceLoaded(false);});
+            thread.start();
             death_chunks.remove(chunk);
         }
     }

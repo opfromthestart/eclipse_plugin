@@ -6,17 +6,17 @@ open source, low priority
 anarchystats:
 shows user server creation date, world size, and number of unique players
 7 days ago
-open source, low priority
+open source, high priority
 
 boostedhelp:
 custom command help text, including colors
 2019
-not open source, med priority
+not open source, high priority
 
 cleanmotd:
 allows better control over motd messages
 2lstudios - 8 months ago
-open source, low priority
+open source, high priority
 
 deathmessagesprime:
 allows custom death messages

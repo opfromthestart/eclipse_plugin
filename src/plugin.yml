@@ -49,6 +49,10 @@ commands:
     description: Modify tpa
     usage: /tpsett [active|timeout] [value | none]
     permission: eclipseplugin.tpsett.command
+  stats:
+    description: Get server stats
+    usage: /stats
+    permission: eclipseplugin.stats.command
 permissions:
   eclipseplugin:
     dupe:
@@ -80,3 +84,6 @@ permissions:
     tpsett:
       command:
         default: op
+    stats:
+      command:
+        default: true
