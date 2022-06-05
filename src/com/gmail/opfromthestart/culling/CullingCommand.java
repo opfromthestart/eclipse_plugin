@@ -33,10 +33,6 @@ public class CullingCommand extends PluginCommand {
                 sender.sendMessage("Minimum time set to " + plugin.getConfig().getInt("eclipseplugin.culling.time") + " ticks.");
             return true;
         }
-        else
-        {
-            sender.sendMessage("Incorrect usage, try /culltime or /culltime [ticks]");
-            return false;
-        }
+        return false;
     }
 }

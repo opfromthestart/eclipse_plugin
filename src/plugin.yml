@@ -25,6 +25,14 @@ commands:
     description: Dura tools toggle
     usage: /dura or /dura [true | false]
     permission: eclipseplugin.dura.command
+  home:
+    description: Home command
+    usage: /home [tp | add | remove | list]
+    permission: eclipseplugin.home.command
+  homelimit:
+    description: Home settings command
+    usage: /homelimit [maxhomes | tptime] [limit]
+    permission: eclipseplugin.homelimit.command
 permissions:
   eclipseplugin:
     dupe:
@@ -44,3 +52,9 @@ permissions:
     dura:
       command:
         default: op
+    home:
+      command:
+        default: op
+    homelimit:
+      command:
+        default: true

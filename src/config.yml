@@ -15,3 +15,6 @@ eclipseplugin:
     active: true
   shield:
     active: true
+  home:
+    maxhomes: 5
+    tptime: 3000

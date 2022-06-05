@@ -1,6 +1,8 @@
 package com.gmail.opfromthestart;
 
 import com.comphenix.protocol.ProtocolLibrary;
+import com.gmail.opfromthestart.altbed.HomeCommand;
+import com.gmail.opfromthestart.altbed.HomeLimitCommand;
 import com.gmail.opfromthestart.bedsave.BedDeathListener;
 import com.gmail.opfromthestart.culling.CullingCommand;
 import com.gmail.opfromthestart.culling.SpeedUnloader;
@@ -15,10 +17,11 @@ import com.gmail.opfromthestart.shieldmeta.ShieldDamage;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
-    BedDeathListener bedDeathListener;
+    HomeCommand homeCommand;
 
     @Override
     public void onEnable() {
@@ -32,8 +35,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SpeedUnloader(this), this);
         Bukkit.getPluginManager().registerEvents(new Tracker(this, tps), this);
         Bukkit.getPluginManager().registerEvents(new ShieldDamage(this), this);
-        bedDeathListener = new BedDeathListener(this);
-        Bukkit.getPluginManager().registerEvents(bedDeathListener, this);
+        Bukkit.getPluginManager().registerEvents(new BedDeathListener(this), this);
         saveDefaultConfig();
 
         Objects.requireNonNull(getCommand("dupe")).setExecutor(new DupeCommand(this)); // TODO plugin based one here too
@@ -41,5 +43,18 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("culltime")).setExecutor(new CullingCommand(this));
         Objects.requireNonNull(getCommand("shield")).setExecutor(new ShieldCommand(this));
         Objects.requireNonNull(getCommand("dura")).setExecutor(new DuraCommand(this));
+        homeCommand = new HomeCommand(this);
+        homeCommand.loadHomes();
+        Objects.requireNonNull(getCommand("home")).setExecutor(homeCommand);
+        Objects.requireNonNull(getCommand("homelimit")).setExecutor(new HomeLimitCommand(this, homeCommand));
+    }
+
+    @Override
+    public void onDisable() {
+        try {
+            homeCommand.saveHomes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -36,8 +36,8 @@ public class BedDeathListener extends PluginListener {
         // plugin.getLogger().info(player.getBedSpawnLocation().toString());
         if (player.getBedSpawnLocation() != null) {
             bed_locs.put(player.getUniqueId(), player.getBedSpawnLocation().clone());
-            plugin.getLogger().info(player.getUniqueId().toString());
-            plugin.getLogger().info(player.getBedSpawnLocation().toString());
+            //plugin.getLogger().info(player.getUniqueId().toString());
+            //plugin.getLogger().info(player.getBedSpawnLocation().toString());
         }
     }
 
@@ -48,8 +48,8 @@ public class BedDeathListener extends PluginListener {
         // plugin.getLogger().info(player.getBedSpawnLocation().toString());
         if (player.getBedSpawnLocation() != null) {
             bed_locs.put(player.getUniqueId(), player.getBedSpawnLocation().clone());
-            plugin.getLogger().info(player.getUniqueId().toString());
-            plugin.getLogger().info(player.getBedSpawnLocation().toString());
+            //plugin.getLogger().info(player.getUniqueId().toString());
+            //plugin.getLogger().info(player.getBedSpawnLocation().toString());
         }
     }
 
@@ -58,7 +58,7 @@ public class BedDeathListener extends PluginListener {
     {
         if (playerDeathEvent.getEntity().getBedSpawnLocation() != null) {
             death_chunks.add(playerDeathEvent.getEntity().getBedSpawnLocation().getChunk());
-            plugin.getLogger().info(String.valueOf(playerDeathEvent.getEntity().getBedSpawnLocation().getChunk().getX()));
+            //plugin.getLogger().info(String.valueOf(playerDeathEvent.getEntity().getBedSpawnLocation().getChunk().getX()));
         }
     }
 
@@ -86,7 +86,7 @@ public class BedDeathListener extends PluginListener {
     {
         CraftPlayer player = (CraftPlayer) playerRespawnEvent.getPlayer();
         if (bed_locs.containsKey(player.getUniqueId())) {
-            plugin.getLogger().info(player.getUniqueId().toString());
+            //plugin.getLogger().info(player.getUniqueId().toString());
             Location loc = bed_locs.get(player.getUniqueId());
             player.setBedSpawnLocation(loc, true);
         }
