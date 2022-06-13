@@ -9,6 +9,7 @@ import com.gmail.opfromthestart.dupe.DupeCommand;
 import com.gmail.opfromthestart.dupe.DupeInteractListener;
 import com.gmail.opfromthestart.dura.DuraCommand;
 import com.gmail.opfromthestart.dura.UseListener;
+import com.gmail.opfromthestart.help.CustomHelp;
 import com.gmail.opfromthestart.motd.ServerInfoModder;
 import com.gmail.opfromthestart.roof.RoofCommand;
 import com.gmail.opfromthestart.roof.Tracker;
@@ -43,6 +44,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Tracker(this, tps), this);
         Bukkit.getPluginManager().registerEvents(new ShieldDamage(this), this);
         Bukkit.getPluginManager().registerEvents(new BedDeathListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new CustomHelp(this), this);
         saveDefaultConfig();
 
         Objects.requireNonNull(getCommand("dupe")).setExecutor(new DupeCommand(this)); // TODO plugin based one here too

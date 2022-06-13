@@ -51,3 +51,26 @@ eclipseplugin:
         &b&6&o&lAnarchy &r&f  Join {{RANDOMPLAYER}}.
     icons:
       - "server-icon.png"
+  customhelp:
+    active: true
+    pages:
+      1:
+          |-
+          &6-----------------------------------------------------
+          &6/ignore <name> &7to ignore a player.
+          &6/ignorelist&7 to list ignored players.
+          &6/r <message> &7to reply to the last person that messaged you.
+          &6/msg <name> <message> &7to pm a player.
+          &6/togglechat &7to toggle the default chat.
+          &6/kill &7to kill yourself.
+          &6/nc <color> &7to change your name color.
+          &6/discord &7to join the discord.
+          &6/tps &7view server tps from the last 1m 5m and 15m
+          &6/stats &7Show server stats
+          &6-----------------------------------------------------
+    error: '&cPage or command not found.'
+    help:
+      |-
+        &6-------------------&7{{NAME}}&6-------------------
+        &6Description: &7{{DESCRIPTION}}
+        &6Usage: &7{{USAGE}}
