@@ -71,11 +71,11 @@ public class StatsCommand extends PluginCommand {
         StringBuilder final_message = new StringBuilder();
         for (String line : message)
         {
-            line = line.replace("[STARTDATE]", startDate);
-            line = line.replace("[DURATION]", durStr);
-            line = line.replace("[SIZE]", size_format);
-            line = line.replace("[PLAYERS]", numPlayers);
-            line = line.replace("[SEED]", seed);
+            line = line.replace("{{STARTDATE}}", startDate);
+            line = line.replace("{{DURATION}}", durStr);
+            line = line.replace("{{SIZE}}", size_format);
+            line = line.replace("{{PLAYERS}}", numPlayers);
+            line = line.replace("{{SEED}}", seed);
             line = ChatColor.translateAlternateColorCodes('&', line);
             final_message.append(line).append("\n");
         }

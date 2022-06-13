@@ -24,13 +24,30 @@ eclipseplugin:
   stats:
     starttime: 0
     worldfolders:
-      - "world"
-      - "world_nether"
-      - "world_the_end"
+      - world
+      - world_nether
+      - world_the_end
     command:
-      - "&6--------------------------------------------"
-      - "&7World was created on &6[STARTDATE]&7. That was &6[DURATION]&7 ago."
-      - "&7The world is &6[SIZE]&7."
-      - "&7A total of &6[PLAYERS]&7 players have joined."
-      - "&7World seed: [[SEED]]"
-      - "&6--------------------------------------------"
+      |- 
+      &6--------------------------------------------
+      &7World was created on &6{{STARTDATE}}&7. That was &6{{DURATION}}&7 ago.
+      &7The world is &6{{SIZE}}&7.
+      &7A total of &6{{PLAYERS}}&7 players have joined.
+      &7World seed: [{{SEED}}]
+      &6--------------------------------------------
+  motd:
+    motds:
+      - |-
+        &b&f&o&lEclipse &r&f  Known in The state of California To
+        &b&6&o&lAnarchy &r&f Cause Birth Defects And Cancer.
+      - |-
+        &b&f&o&lEclipse &r&f  Nether Hub Has Been Disabled
+        &b&6&o&lAnarchy &r&f Due To Bees.
+      - |-
+        &b&f&o&lEclipse &r&f  CPvP = Cs:Go HvHing
+        &b&6&o&lAnarchy &r&f Change My Mind.
+      - |-
+        &b&f&o&lEclipse &r&f  TPS is {{TPS}}
+        &b&6&o&lAnarchy &r&f  Join {{RANDOMPLAYER}}.
+    icons:
+      - "server-icon.png"

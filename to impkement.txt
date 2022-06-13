@@ -3,10 +3,10 @@ anarchyexploitfixes:
 17 days ago
 open source, low priority
 
-anarchystats:
+anarchystats: - done
 shows user server creation date, world size, and number of unique players
 7 days ago
-open source, high priority
+open source, low priority
 
 boostedhelp:
 custom command help text, including colors
@@ -103,10 +103,10 @@ restarts?
 no clue
 open source alternatives, med priority
 
-rooflimiter:
+rooflimiter: - done
 limits nether roof movement
 doesnt matter, im replacing it
-open source(elytraroofpatch), high priority
+open source(elytraroofpatch), low priority
 
 stress:
 allows stress testing of bukkit servers
