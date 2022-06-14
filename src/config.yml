@@ -53,6 +53,7 @@ eclipseplugin:
       - "server-icon.png"
   customhelp:
     active: true
+    override: false
     pages:
       1:
           |-

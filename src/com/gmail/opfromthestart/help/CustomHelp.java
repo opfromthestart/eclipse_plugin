@@ -1,6 +1,7 @@
 package com.gmail.opfromthestart.help;
 
 import com.gmail.opfromthestart.PluginListener;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,14 +32,16 @@ public class CustomHelp extends PluginListener {
             Map<String, Map<String, Object>> comms = plugin.getDescription().getCommands();
             Player player = preprocessEvent.getPlayer();
 
+            if (plugin.getConfig().getBoolean("eclipseplugin.customhelp.override"))
+                preprocessEvent.setCancelled(true);
+
             if (!Objects.equals(plugin.getConfig().getString("eclipseplugin.customhelp.pages." + key), null))
             {
                 preprocessEvent.setCancelled(true);
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&',
                         Objects.requireNonNull(plugin.getConfig().getString("eclipseplugin.customhelp.pages." + key))));
             }
-            else if (comms.containsKey(key)) {
-                preprocessEvent.setCancelled(true);
+            else if (comms.containsKey(key) && plugin.getConfig().getBoolean("eclipseplugin.customhelp.override")) {
                 if (player.hasPermission((String) comms.get(key).get("permission"))) {
                     String helpMsg = plugin.getConfig().getString("eclipseplugin.customhelp.help");
 
