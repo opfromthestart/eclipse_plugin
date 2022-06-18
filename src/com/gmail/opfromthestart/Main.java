@@ -6,7 +6,8 @@ import com.gmail.opfromthestart.bedsave.BedDeathListener;
 import com.gmail.opfromthestart.culling.CullingCommand;
 import com.gmail.opfromthestart.culling.SpeedUnloader;
 import com.gmail.opfromthestart.dupe.DupeCommand;
-import com.gmail.opfromthestart.dupe.DupeInteractListener;
+import com.gmail.opfromthestart.dupe.DonkeyDupe;
+import com.gmail.opfromthestart.dupe.ItemFrameDupe;
 import com.gmail.opfromthestart.dura.DuraCommand;
 import com.gmail.opfromthestart.dura.UseListener;
 import com.gmail.opfromthestart.help.CustomHelp;
@@ -39,12 +40,13 @@ public class Main extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, tps::onTick, 0, 1);
 
         Bukkit.getPluginManager().registerEvents(new UseListener(this),this);
-        Bukkit.getPluginManager().registerEvents(new DupeInteractListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new DonkeyDupe(this), this);
         Bukkit.getPluginManager().registerEvents(new SpeedUnloader(this), this);
         Bukkit.getPluginManager().registerEvents(new Tracker(this, tps), this);
         Bukkit.getPluginManager().registerEvents(new ShieldDamage(this), this);
         Bukkit.getPluginManager().registerEvents(new BedDeathListener(this), this);
         Bukkit.getPluginManager().registerEvents(new CustomHelp(this), this);
+        Bukkit.getPluginManager().registerEvents(new ItemFrameDupe(this), this);
         saveDefaultConfig();
 
         Objects.requireNonNull(getCommand("dupe")).setExecutor(new DupeCommand(this)); // TODO plugin based one here too

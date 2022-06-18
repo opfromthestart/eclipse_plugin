@@ -1,8 +1,13 @@
 eclipseplugin:
   dupe:
     itemlimit: 50
-    active: true
-    timeout: 15000
+    donkey:
+      active: true
+      timeout: 15000
+      yield: 2
+    itemframe:
+      active: true
+      rate: 0.05
   roof:
     speed: 15
     lowtps: 16

@@ -7,7 +7,10 @@ depend: ["ProtocolLib"]
 commands:
   dupe:
     description: Dupe settings
-    usage: /dupe [active | itemlimit | timeout] [number | bool]
+    usage: |-
+      /dupe donkey [active | timeout | yield] [number | bool]
+      /dupe itemframe [active | rate] [number | bool]
+      /dupe itemlimit [number]
     permission: eclipseplugin.dupe.command
   roof:
     description: Nether roof settings
